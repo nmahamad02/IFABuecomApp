@@ -1,0 +1,41 @@
+
+
+<button type="submit"  (click) ="getContactList()" >
+    Print
+</button>    
+<div id = "table" class="row">
+    <div class="col-1"></div>
+    <div class="col">
+        <div class="col-12" >
+         <br>
+            <h4> contact List</h4>
+            <hr>
+            <table class="table table-hover table-striped table-bordered table-sm">
+                <thead>
+                    <tr>
+                        <th>Party Id </th>
+                        <th>Party Name</th>
+                        <th>Type</th>
+                        <th>Address 1</th>
+                        <th>Address 2</th>
+                        <th>Mobile No</th>
+                        <th>Email_id</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let row of cldata">
+                        <td>{{ row.PARTY_ID }}</td>
+                        <td>{{ row.NAME }}</td>
+                        <td>{{ row.TYPE }}</td>
+                        <td>{{ row.ADD1 }}</td>
+                        <td>{{ row.ADD2 }}</td>
+                        <td>{{ row.MOBILE }}</td>
+                        <td>{{ row.EMAIL_ID }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+    <div class="col"></div>
+</div>

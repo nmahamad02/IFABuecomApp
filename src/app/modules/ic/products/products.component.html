@@ -1,0 +1,238 @@
+<div class="container-fluid">
+    <br>
+    <div class="col-12">
+        <mat-card style="color: darkblue; background-color:rgb(251, 252, 249);">
+            <mat-card-header>
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-4">
+                            <mat-card-title> Product Management </mat-card-title>  <h2>{{varpcode}}</h2>
+                        </div>
+                        <div class="col-7">
+                            <mat-card-actions>
+                                <div class="row">
+                                    <div class="col-2">
+                                        <button mat-raised-button class="bg-primary text-white btn btn-block" style="border-radius: 50%;" [routerLink]="['/crm/dashboard']">
+                                            <mat-icon>add</mat-icon> New
+                                        </button>
+                                    </div>
+                                    <div class="col-2">
+                                        <button mat-raised-button class="bg-warning text-white btn btn-block" style="border-radius: 50%;">
+                                            <mat-icon>note_add</mat-icon> Edit 
+                                        </button>
+                                    </div>
+                                    <div class="col-2">
+                                        <button type="submit" mat-raised-button class="bg-secondary text-white btn btn-block" style="border-radius: 50%;" [routerLinkActive]="['active']" [routerLink]="['/crm/contactllist']">
+                                            <mat-icon>print</mat-icon> Print
+                                        </button>
+                                    </div>
+                                    <div class="col-2">
+                                        <button mat-raised-button class="bg-success  text-white btn btn-block" style="border-radius: 50%;">
+                                            <mat-icon>note_add</mat-icon> Submit 
+                                        </button>
+                                    </div>
+                                    <div class="col-2">
+                                        <button mat-raised-button class="bg-info text-white btn btn-block" style="border-radius: 50%;" [routerLink]="['/crm/dashboard']">
+                                            <mat-icon>Delete</mat-icon> Delete
+                                        </button>   
+                                    </div>
+                                    <div class="col-2">
+                                        <button mat-raised-button class="bg-danger text-white btn btn-block" style="border-radius: 50%;" [routerLink]="['/crm/dashboard']">
+                                            <mat-icon>cancel</mat-icon> Exit
+                                        </button>
+                                    </div>  
+                                </div>
+                            </mat-card-actions>
+                        </div>
+                    </div>
+                </div>
+            </mat-card-header>
+        
+            <mat-card-content>
+                <form [formGroup]="productForm" class="form-container">
+                    <div class="row">
+                        <div class="col-6">
+                            <mat-form-field class="full-width">
+                                <mat-label >Name</mat-label>
+                                <input formControlName="pname" matInput required  value="{{varName}}">
+                                <mat-error >Name is <strong>required</strong></mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-2">
+                            <mat-form-field class="full-width">
+                                    <mat-label>BarCode</mat-label>
+                                    <input formControlName="pbarcode" matInput required  value="{{varBarcode}}">
+                                    <mat-error >Barcode is <strong>required</strong></mat-error>
+                            </mat-form-field> 
+                        </div>
+                        <div class="col-2">
+                            <mat-form-field class="full-width">
+                                <mat-label>Category</mat-label>
+                                <mat-select formControlName="pcategory"  value="{{varCategory}}">
+                                    <mat-option  value="true">True</mat-option>
+                                    <mat-option  value="false">False</mat-option>
+                                  </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-2">
+                            <mat-form-field class="full-width">
+                                <mat-label>SubCategory</mat-label>
+                                <!-- <mat-select [(ngModel)]="varAccountType">
+                                    <mat-option *ngFor="let type of AccountsTypeList" [value]="type.TYPE_CD">{{ type.TYPE_CD }} - {{ type.TYPE_DESC}}</mat-option>
+                                </mat-select> -->
+                                <mat-select formControlName="psubcategory"  value="{{varSubcategory}}">
+                                    <mat-option  value="true">True</mat-option>
+                                    <mat-option  value="false">False</mat-option>
+                                  </mat-select>
+                           </mat-form-field> 
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <mat-form-field class="full-width">
+                                <mat-label >Profile</mat-label>
+                                <mat-select formControlName="pprofile" matInput required value="{{varProfile}}">
+                                    <mat-option value="TRADE DEBTORS">TRADE DEBTORS</mat-option>
+                                    <mat-option value="CLIMATIC DEBTORS">CLIMATIC DEBTORS</mat-option>
+                                </mat-select>
+                                
+                            </mat-form-field>
+                        </div>
+                        <div class="col-4">
+                            <mat-form-field class="full-width">
+                                <mat-label>Color</mat-label>
+                                <mat-select formControlName="pcolor"  value="{{varColor}}">
+                                    <mat-option  value="true">True</mat-option>
+                                    <mat-option  value="false">False</mat-option>
+                                  </mat-select>
+                              </mat-form-field> 
+                        </div>
+                        <div class="col-4">
+                            <mat-form-field class="full-width">
+                                <mat-label>Size</mat-label>
+                                <mat-select formControlName="psize"  value="{{varSize}}">
+                                    <mat-option  value="true">True</mat-option>
+                                    <mat-option  value="false">False</mat-option>
+                                  </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <mat-form-field class="full-width">
+                                <mat-label >Manufacturer</mat-label>
+                                <mat-select formControlName="pmanufact" value="{{varManufact}}">
+                                    <mat-option value="true">True</mat-option>
+                                    <mat-option value="false">False</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        
+                        <div class="col-3">
+                            <mat-form-field class="full-width">
+                                <mat-label >Supplier</mat-label>
+                                <mat-select formControlName="psupplier" value="{{varSupplier}}">
+                                    <mat-option value="true">True</mat-option>
+                                    <mat-option value="false">False</mat-option>
+                                  </mat-select>
+                                
+                            </mat-form-field>
+                        </div>
+                        <div class="col-6">
+                            <mat-form-field class="full-width">
+                                <mat-label>Remarks</mat-label>
+                                <input formControlName="premarks" matInput required value="{{varRemarks}}">
+                                <mat-error >Remarks is <strong>required</strong></mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </form>
+            </mat-card-content>
+
+            <p>
+                Customer Master is essentially a primary master data, inorder to Create master we need account Group, Account Group is accumulation of similar accounts, master records in the customer hierarchy are controlled by their accounts group. It determines the optional, manadatory and not requires information for the customer. Account gruop detemines the way, numbers are assigned to customer. There will be many options to defferentiate the customers into type, Cateogry, Branch so on for the ease of use.  Entire transactons and  activites can drilled down from here.
+             </p>
+               
+            <!--  <div class="col-11">
+                <b>Search</b>
+                <mat-form-field class="full-width">
+                    <mat-icon matPrefix>search</mat-icon>
+                  <input matInput type="text" style="color: black;" placeholder="Please Enter Your Seach Keyword to filter" (keyup)="quickPartySearch()" [(ngModel)]="searchValue"> 
+                </mat-form-field>
+            </div>-->
+            <mat-tab-group mat-align-tabs="center" >
+                <mat-tab label="Home" style="color:wheat;">Home
+                    <div class="col-11">
+                        <b>Search</b>
+                        <mat-form-field class="full-width">
+                            <mat-icon matPrefix>search</mat-icon>
+                            <input matInput type="text" style="color: black;" placeholder="Please Enter Your Seach Keyword to filter" (keyup)="quickProductSearch()" [(ngModel)]="searchValue">
+                        </mat-form-field>
+                    </div>
+                    <!-- GET PARTY DETAILS FOR THIS CUSTOMER                     [rowStyle]="rowStyle"-->
+                    <ag-grid-angular style="width: 100%; height: 360px ;" 
+                    class="ag-theme-balham" [animateRows]="true"
+                    [pagination]="true" [paginationPageSize]="25" 
+                    [gridOptions]="gridOptions" 
+                    [suppressRowClickSelection]="true"
+                    (cellClicked)='onViewCellClicked($event)'
+                    [columnDefs]="columnProductDefs"
+                    (gridReady)="onGridProductReady($event)"></ag-grid-angular>     
+                </mat-tab>
+
+                <!-- <mat-tab label="Contact Details">Product Location
+                  
+                        <ag-grid-angular style="width: 100%; height: 360px ;" 
+                        class="ag-theme-balham" [animateRows]="true"
+                        [pagination]="true" [paginationPageSize]="25" 
+                        [gridOptions]="gridOptions" 
+                        [rowStyle]="rowStyle"
+                        [rowData]="CustPartyList"
+                        [suppressRowClickSelection]="true"
+                        [columnDefs]="columnContactDefs"
+                        (gridReady)="onGridCustomerParty($event)"></ag-grid-angular> 
+                </mat-tab>
+
+               <mat-tab label="Opening Balance">Rack and Self              
+                <div *ngIf="opbalChartBool">
+                    <button mat-raised-button class="bg-primary text-white btn" (click)="flipChartGrid()">
+                        Show data grid
+                    </button>
+                    <canvas baseChart 
+                        [datasets]="barChartData"
+                        [labels]="barChartLabels"
+                        [options]="barChartOptions"
+                        [colors]="barChartColors"
+                        [plugins]="barChartPlugins"
+                        [legend]="barChartLegend"
+                        [chartType]="barChartType">
+                      </canvas>
+                                        </div>
+                                        <div *ngIf="!opbalChartBool">
+                                            <button mat-raised-button class="bg-primary text-white btn" (click)="flipChartGrid()">
+                                                Show chart
+                                            </button>
+                   <ag-grid-angular style="width: 100%; height: 360px ;" 
+                class="ag-theme-balham" [animateRows]="true"
+                [pagination]="true" [paginationPageSize]="25" 
+                [gridOptions]="gridOptions" 
+                [rowStyle]="rowStyle"
+                [rowData]="CustInvoiceList"
+                [suppressRowClickSelection]="true"
+                (cellClicked)='onViewCellClicked($event)'
+                [columnDefs]="columnCustomeropeningDefs"
+                (gridReady)="onGridCustomerOpeningDetail($event)"></ag-grid-angular>   
+                </div>
+               </mat-tab> -->
+               <mat-tab label="UnitofMeasure">Unit Of Measure</mat-tab>
+               <mat-tab label="AdditionalElemts">Additional Elements</mat-tab>
+               <mat-tab label="RawElements">Raw Elements</mat-tab>
+               <mat-tab label="otherDetails">Other Details</mat-tab>
+               <mat-tab label="Documents">Documents</mat-tab>
+               <mat-tab label="Distributors">Distributors</mat-tab>
+               <mat-tab label="CustomerTypePrice">Customer Type Price</mat-tab>
+            </mat-tab-group>
+             <br>
+        </mat-card>
+    </div>
+</div>

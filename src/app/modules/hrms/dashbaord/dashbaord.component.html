@@ -1,0 +1,16 @@
+
+<div class="container-fluid">
+    <br>
+    <input type="text" placeholder="Please Enter Your Seach Keyword to filter" (keyup)="quickempSearch()" [(ngModel)]="searchValue">
+    <ag-grid-angular
+    style="width: 100%; height: 5000px;"
+    class="ag-theme-balham"
+    [gridOptions]="gridOptions"
+    [rowStyle]="rowStyle"
+    [cacheOverflowSize]="cacheOverflowSize"
+    [columnDefs]="columnDefs"
+    (gridReady)="onGridempReady($event)"
+    ></ag-grid-angular>
+    
+    
+</div>

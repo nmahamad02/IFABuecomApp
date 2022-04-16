@@ -1,0 +1,19 @@
+.full-width {
+    width: 100%;
+    height: 40%;
+}
+::ng-deep .ag-theme-balham .ag-header-cell, .ag-theme-balham .ag-header-group-cell{
+  background-color: rgb(2, 46, 82);
+  color: white;
+}
+
+.ag-theme-balham {
+  --ag-odd-row-background-color: #BBBBBB;
+}
+.ag-theme-balham .ag-row-odd {
+  background-color: var(--ag-odd-row-background-color);
+}
+
+button.mat-button {
+  border-radius: 0;
+}

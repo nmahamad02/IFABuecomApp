@@ -1,0 +1,233 @@
+<div class="container-fluid">
+    <br>
+    <div class="col-12">
+        <mat-card style="color: darkblue; background-color:rgb(251, 252, 249);">
+            <mat-card-header>
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-4">
+                            <mat-card-title i18n="@@CMMContactsTitle"> Client Master Management </mat-card-title> <h2>{{varPartyId}}</h2>
+                        </div>
+                        <div class="col-7">
+                            <mat-card-actions>
+                                <div class="row">
+                                    <div class="col-2">
+                                        <button i18n="@@CMMContactsNewBtn" mat-raised-button class="bg-primary text-white btn btn-block" style="border-radius: 50%;" [routerLink]="['/crm/dashboard']">
+                                            <mat-icon>add</mat-icon> New
+                                        </button> 
+                                    </div>
+                                    <div class="col-2">
+                                        <button i18n="@@CMMContactsEditBtn" mat-raised-button class="bg-warning text-white btn btn-block" style="border-radius: 50%;">
+                                            <mat-icon>note_add</mat-icon> Edit 
+                                        </button>
+                                    </div>
+                                    <div class="col-2">
+                                        <button i18n="@@CMMContactsPrintBtn" type="submit" mat-raised-button class="bg-secondary text-white btn btn-block" style="border-radius: 50%;" [routerLinkActive]="['active']" [routerLink]="['/crm/contactllist']">
+                                            <mat-icon>print</mat-icon> Print
+                                        </button>
+                                    </div>
+                                    <div class="col-2">
+                                        <button i18n="@@CMMContactsSubmitBtn" mat-raised-button class="bg-success  text-white btn btn-block" style="border-radius: 50%;">
+                                            <mat-icon>note_add</mat-icon> Submit 
+                                        </button>
+                                    </div>
+                                    <div class="col-2">
+                                        <button i18n="@@CMMContactsDeleteBtn" mat-raised-button class="bg-info text-white btn btn-block" style="border-radius: 50%;" [routerLink]="['/crm/dashboard']">
+                                            <mat-icon>Delete</mat-icon> Delete
+                                        </button>   
+                                    </div>
+                                    <div class="col-2">
+                                        <button i18n="@@CMMContactsExitBtn" mat-raised-button class="bg-danger text-white btn btn-block" style="border-radius: 50%;" [routerLink]="['/crm/dashboard']">
+                                            <mat-icon>cancel</mat-icon> Exit
+                                        </button>
+                                    </div>  
+                                </div>
+                            </mat-card-actions>
+                        </div>
+                    </div>
+                </div>
+            </mat-card-header>
+            <mat-card-content>
+                <form [formGroup]="profileForm" class="form-container">
+                    <div class="row">
+                        <div class="col-3">
+                            <mat-form-field class="full-width">
+                                <mat-label i18n="@@CMMContactsNameFormControl">Name</mat-label>
+                                <input formControlName="name" matInput required value="{{varName}}">
+                                <mat-error i18n="@@CMMContactsNameFormControlError">Name is <strong>required</strong></mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-2">
+                            <mat-form-field class="full-width"> 
+                                <mat-label i18n="@@CMMContactsMobileFormControl">Mobile Number</mat-label>
+                                <input type="text" formControlName="mobilenbr" matInput required value="{{varMobile}}">
+                                <mat-error i18n="@@CMMContactsMobileFormControlError">Mobile number is <strong>required</strong></mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-3">
+                            <mat-form-field class="full-width">
+                                <mat-label i18n="@@CMMContactsEmailFormControl">Email</mat-label>
+                                <input type="email" formControlName="emailId" matInput required value="{{varEmailId}}">
+                                <mat-error i18n="@@CMMContactsEmailFormControlError">Please enter a <strong>valid</strong> email ID</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-2">
+                            <mat-form-field class="full-width">
+                                <mat-label i18n="@@CMMContactsDoRFormControl">Date of Registration</mat-label>
+                                <input matInput [matDatepicker]="datePicker" required formControlName="dateOfRegistration" required  value="{{varCreatedt}}">
+                                <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+                                <mat-datepicker #datePicker></mat-datepicker>
+                                <mat-error i18n="@@CMMContactsDoRFormControlError">Please choose a <strong>valid</strong> date</mat-error> 
+                            </mat-form-field> 
+                        </div>
+                        <div class="col-2">
+                            <mat-form-field class="full-width">
+                                <mat-label i18n="@@CMMContactsPrimaryContactFormControl">Primary contact?</mat-label>
+                                <mat-select [(value)]="varSelected" formControlName="isPrimary" value="{{varIs_Primary}}">
+                                <mat-option i18n="@@CMMContactsTrueOption" value="true">True</mat-option>
+                                <mat-option i18n="@@CMMContactsFalseOption" value="false">False</mat-option>
+                                </mat-select>
+                              </mat-form-field>                              
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <mat-form-field class="full-width">
+                                <mat-label i18n="@@CMMContactsPhoneLine1FormControl">Phone line I</mat-label>
+                                <input formControllerName="phone1" matInput value="{{varPhone1}}">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-3">
+                            <mat-form-field class="full-width">
+                                <mat-label i18n="@@CMMContactsPhoneLine2FormControl">Phone line II</mat-label>
+                                <input formControllerName="phone2" matInput value="{{varPhone2}}">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-3">
+                            <mat-form-field class="full-width">
+                                <mat-label i18n="@@CMMContactsFaxLine1FormControl">Fax line I</mat-label>
+                                <input formControllerName="fax1" matInput placeholder="Fax line I" value="{{varFax1}}">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-3">
+                            <mat-form-field class="full-width">
+                                <mat-label i18n="@@CMMContactsFaxLine2FormControl">Fax line II</mat-label>
+                                <input formControllerName="fax2" matInput placeholder="Fax line II" value="{{varFax2}}">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <mat-form-field class="full-width">
+                                <mat-label i18n="@@CMMContactsAccNbrFormControl">Account No</mat-label>
+                                <input formControllerName="pcode" #pcode (change)="getAccountData(pcode.value)" matInput required value="{{varPcode}}"> 
+                                <mat-error  i18n="@@CMMContactsAccNbrFormControlError">Account No is <strong>required</strong></mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-8">
+                            <mat-form-field class="full-width">
+                                <mat-label  i18n="@@CMMContactsAccNameFormControl">Account Name</mat-label>
+                                <input formControllerName="pname" matInput required value ="{{mAccountDetails.CUST_NAME}}"> 
+                                <mat-error  i18n="@@CMMContactsAccNameFormControlError">Account name is <strong>required</strong></mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <mat-form-field class="full-width">
+                                <mat-label i18n="@@CMMContactsFlatNbrFormControl">Flat No</mat-label>
+                                <input formControllerName="flatnbr" matInput required value="{{varFlatnbr}}"> 
+                                <mat-error i18n="@@CMMContactsFlatNbrFormControlError">Flat number is <strong>required</strong></mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-4">
+                            <mat-form-field class="full-width">
+                                <mat-label  i18n="@@CMMContactsHouseNbrFormControl">House No.</mat-label>
+                                <input formControllerName="housenbr" matInput required value ="{{varHousenbr}}">
+                                <mat-error  i18n="@@CMMContactsHouseNbrFormControlError">Building/House is <strong>required</strong></mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-4">
+                            <mat-form-field class="full-width">
+                                <mat-label i18n="@@CMMContactsRoadNbrFormControl">Road No</mat-label>
+                                <input formControllerName="roadnbr" matInput required value ="{{varRoadnbr}}">
+                                <mat-error i18n="@@CMMContactsRoadNbrFormControlError">Road number is <strong>required</strong></mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <mat-form-field class="full-width">
+                                <mat-label i18n="@@CMMContactsPOBoxNbrFormControl">P.O. Box</mat-label>
+                                <input formControllerName="pobox" matInput required value="{{varPobox}}">
+                                <mat-error i18n="@@CMMContactsPOBoxNbrFormControlError">PO Box number is <strong>required</strong></mat-error>
+                            </mat-form-field>
+                        </div> 
+                        <div class="col-4">
+                            <mat-form-field class="full-width">
+                                <mat-label i18n="@@CMMContactsAreaFormControl">Area</mat-label>
+                                <input formControllerName="area" matInput required  value="{{varCity}}">
+                                <mat-error i18n="@@CMMContactsAreaFormControlError">Area is <strong>required</strong></mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-4">
+                            <mat-form-field class="full-width">
+                                <mat-label i18n="@@CMMContactsBlockNbrFormControl">Block No</mat-label>
+                                <input formControllerName="blocknbr" matInput required value ="{{varBlocknbr}}">
+                                <mat-error i18n="@@CMMContactsBlockNbrFormControlError">Block number is <strong>required</strong></mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <mat-form-field class="full-width">
+                                <mat-label i18n="@@CMMContactsAddress1FormControl">Address I</mat-label>
+                                <input formControllerName="address1" matInput value="{{varAddress1}}">
+                            </mat-form-field>
+                        </div>    
+                        <div class="col-4">
+                            <mat-form-field class="full-width">
+                                <mat-label i18n="@@CMMContactsAddress2FormControl">Address II</mat-label>
+                                <input formControllerName="address2" matInput value="{{varAddress2}}">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-4">
+                            <mat-form-field class="full-width">
+                                <mat-label i18n="@@CMMContactsAddress3FormControl">Address III</mat-label>
+                                <input formControllerName="address3" matInput value="{{varAddress3}}">     
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="col-12">
+        <mat-card style="color: rgb(2, 46, 82);; background-color:rgb(251, 252, 249);">
+            <mat-card-header class="border-radius" style="color: black;">
+                <div class="col-11">
+                    <b>Search</b>
+                    <mat-form-field class="full-width">
+                        <mat-icon matPrefix>search</mat-icon>
+                        <input matInput type="text" style="color: black;" placeholder="Please Enter Your Seach Keyword to filter" (keyup)="quickPartySearch()" [(ngModel)]="searchValue">
+                    </mat-form-field>
+                </div>
+            </mat-card-header>
+            <mat-card-content>
+                <button (click)="AddRows()">Create</button>
+                <button (click)="AddRows()">Delete</button>
+                <ag-grid-angular style="width: 100%; height: 360px;" 
+                    class="ag-theme-balham" [animateRows]="true"
+                    [pagination]="true" [paginationPageSize]="25" 
+                    [gridOptions]="gridOptions" 
+                    [rowStyle]="rowStyle"
+                    [suppressRowClickSelection]="true"
+                    (cellClicked)='onViewCellClicked($event)'
+                    [cacheOverflowSize]="cacheOverflowSize"
+                    [columnDefs]="columnDefs"
+                    (gridReady)="onGridPartyReady($event)">
+                </ag-grid-angular>    
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

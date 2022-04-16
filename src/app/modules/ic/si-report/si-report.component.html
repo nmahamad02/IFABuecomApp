@@ -1,0 +1,13 @@
+<mat-card style="color: darkblue; background-color:rgb(251, 252, 249); width: 75vw;">
+    <mat-card-header>
+        <mat-card-title> Stock Issue Voucher: {{ trnno }}</mat-card-title>  
+    </mat-card-header> 
+    <hr>
+    <mat-card-content>
+        <div class="col-12">
+            <div id="viewer-host">
+                <gc-activereports-viewer (dblclick)="onViewerInit()"> </gc-activereports-viewer>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>  

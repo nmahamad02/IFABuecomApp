@@ -1,0 +1,180 @@
+<div class="container-fluid">
+    <br>
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <mat-card class="example-card" style="background-color:#d9d9d9;" *ngIf="dashboardBool">
+                <mat-card-header>
+                  <mat-card-title>Leave Application</mat-card-title>
+                  <mat-card-subtitle>Online</mat-card-subtitle>
+                </mat-card-header>
+                <hr>
+                <mat-card-content>
+                    <p>Recent leave applications:</p>
+                    <table class="table table-sm table-bordered table-hover">
+                        <tr>
+                            <th>Leave Type</th>
+                            <th>Year</th>
+                            <th>Entitled</th>
+                            <th>Availed</th>
+                            <th>Balance</th>
+                        </tr>
+                        <tr>
+                            <td>AL - Annual Leave</td>
+                            <td>2020</td>
+                            <td>30</td>
+                            <td>21</td>
+                            <td>9</td>
+                        </tr>
+                        <tr>
+                            <td>FM - Medical Leave</td>
+                            <td>2020</td>
+                            <td>15</td>
+                            <td>2</td>
+                            <td>13</td>
+                        </tr>
+                        <tr>
+                            <td>HM - Half Medical</td>
+                            <td>2020</td>
+                            <td>15</td>
+                            <td>0</td>
+                            <td>15</td>
+                        </tr>
+                        <tr>
+                            <td>UM - Unpaid Medical Leave</td>
+                            <td>2020</td>
+                            <td>15</td>
+                            <td>15</td>
+                            <td>0</td>
+                        </tr>
+                    </table>
+                </mat-card-content>
+                <hr>
+                <mat-card-actions>
+                    <button mat-raised-button color="primary" (click)="toggleApplicationForm()">
+                        <mat-icon>note_add</mat-icon>
+                        Apply for Leave
+                    </button>
+                    <button mat-raised-button color="accent">
+                        <mat-icon>print</mat-icon>
+                        Print Report
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+            <mat-card class="example-card" style="background-color:#d9d9d9;" *ngIf="applicationBool">
+                <mat-card-header>
+                  <mat-card-title>Manzoor Ahamad</mat-card-title>
+                </mat-card-header>
+                <hr>
+                <mat-card-content>
+                    <form [formGroup]="leaveAppnForm" (ngSubmit)="leaveApplied()" class="form-horizontal">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <mat-form-field class="example-full-width">
+                                            <b><label for="Applicationno">Application No.</label></b>
+                                            <input matInput formControlName="leaveappno" type="Applicationno">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-6">
+                                        <mat-form-field class="example-full-width">
+                                            <b><label for="leaveAppdt">Application Date.</label></b>
+                                            <input matInput formControlName="leaveAppdt" type="date">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <mat-form-field class="example-full-width">
+                                            <b><label for="empno">Employee No.</label></b>
+                                            <input matInput formControlName="empno" type="text" #empno (focusout)="searchEmp(empno.value,'empno')">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-6">
+                                        <!-- <mat-form-field class="example-full-width">
+                                            <input matInput type="text" value="{{mEmpDetails.EMPNAME}}">
+                                            <input matInput type="text" value="{{mEmpDetails.DESIGNATION_NAME}}">
+                                            <input matInput type="text" value="{{mEmpDetails.DIVISION_NAME}}">
+                                            <input matInput type="text" value="{{mEmpDetails.DEPARTMENT_NAME}}">
+                                            <input matInput type="text" value="{{mEmpDetails.JOIN_DT }}">
+                                        </mat-form-field> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-8">
+                               <mat-form-field appearance="fill">
+                                    <mat-label>Leave type</mat-label>
+                                    <mat-select [(ngModel)]="selectedValue" name="leave">
+                                        <mat-option *ngFor="let type of leaveCodeList" [value]="type.LEAVE_CODE">{{ type.LEAVE_CODE }} - {{ type.LEAVE_DESCRIPTION}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-4">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Emailid</mat-label>
+                                    <input type="emailid" matInput formControlName="emailid" placeholder="Ex. info@example.com">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <mat-form-field class="example-full-width">
+                                   <b><label for="leaveDescription">Leave Effective From.</label></b>
+                                  <input matInput formControlName="efffrom" type="date">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-4">
+                                <mat-form-field class="example-full-width">
+                                    <b><label for="leaveDescription">Leave Effective Until</label></b>
+                                    <input matInput formControlName="effuntil"  type="date">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-4">
+                                <!-- 
+                                    <mat-form-field class="example-full-width">
+                                        <b><label>No. of Days</label></b>
+                                        <input matInput type="text"  value="{{mEmpDetails.EMPNAME}}">
+                                    </mat-form-field>
+                                --> 
+                            </div>
+                        </div>
+                        <div class="row">
+                               <div class="col-12">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput formControlName="remarks" #message maxlength="120" placeholder="I need help with...">
+                                        <mat-hint>Your Commments/Reason in brief</mat-hint>
+                                        <mat-hint>{{message.value.length}} / 120</mat-hint>
+                                    </mat-form-field>
+                               </div>
+                        </div>
+                    </form>
+                </mat-card-content>
+                <hr>
+                <mat-card-actions>
+                    <button mat-raised-button color="primary">
+                        <mat-icon>note_add</mat-icon>
+                        Update
+                    </button>
+                    <button mat-raised-button color="accent">
+                        <mat-icon>print</mat-icon>
+                        Print Leave
+                    </button>
+                    <button mat-raised-button color="warn" (click)="cancelApplicationForm()">
+                        <mat-icon>cancel</mat-icon>
+                        Exit
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+        <div class="col-1"></div>
+    </div>
+</div>
+
+
+
+
